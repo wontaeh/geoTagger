@@ -7,7 +7,7 @@ class TagItemList extends Component {
         const { displayDatas } = this.props;
         let items = [];
         for(let i = 0; i < displayDatas.length; i++) {
-            items.push(<li key={'item'+i}> Name: {displayDatas[i].name},   Tags: {displayDatas[i].tags.join(', ')},  Address: {displayDatas[i].googleInfo}</li>);
+            items.push(<li key={'item'+i}> Name: {displayDatas[i].name}, Tags: {displayDatas[i].tags.join(', ')},  Address: {displayDatas[i].googleInfo}</li>);
         }
         return (
             <div>

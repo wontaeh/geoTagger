@@ -8,16 +8,8 @@ class Tagger extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            datas : [{
-              name: '',
-							tags: [],
-							googleInfo: []
-						}],
-						displayDatas : [{
-							name: '',
-							tags: [],
-							googleInfo: []
-						}]
+            datas : [],
+						displayDatas : []
         };
 		}
 		
