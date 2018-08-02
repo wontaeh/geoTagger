@@ -8,6 +8,7 @@ import appConfig from '../config.json';
 import mongoose from 'mongoose';
 
 import locationController from './locationController';
+import userController from './userController';
 
 const MLAB_URI = `mongodb://${appConfig.mongodb.user}:${appConfig.mongodb.password}@ds163781.mlab.com:63781/geo-tagger`; 
 
@@ -31,8 +32,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 
-app.get('/getResults', locationController.getLocations);
+app.post('/signup', userController.createUser);
+app.post('/login', 	userController.verifyUser);
 
+app.get('/getResults', locationController.getLocations);
 app.post('/addLocation', locationController.addLocation);
 
 

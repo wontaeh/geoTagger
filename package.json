@@ -4,20 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node buildScripts/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shafayat05/geoTagger.git"
+    "start": "babel-node server/server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shafayat05/geoTagger/issues"
-  },
-  "homepage": "https://github.com/shafayat05/geoTagger#readme",
   "dependencies": {
     "@google/maps": "^0.4.6",
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",
@@ -25,6 +18,7 @@
     "path": "^0.12.7",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
     "request": "^2.87.0"
   },
   "devDependencies": {
