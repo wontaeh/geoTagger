@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const locationSchema = new Schema({ 
   name: {type: String, required: true},
   googleInfo: {type: Array, default: []},
-  tags: {type: Array, default: []} 
+  tags: {type: Array, default: []},
+  username: {type: String, required: true}
 });
 
 

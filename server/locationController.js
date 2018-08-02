@@ -1,4 +1,4 @@
-const Location = require('./locationSchema');
+const Location = require('../models/locationSchema');
 
 const appConfig = require('../config.json');
 
@@ -8,12 +8,16 @@ var googleMapsClient = require('@google/maps').createClient({
 
 const locationController = {};
 locationController.addLocation = (req, res, next) => {
+  console.log('req.body: ', req.body);
   let locationData = {};
   if(req.body.name) {
     locationData.name = req.body.name;
   }
   if(req.body.tags) {
     locationData.tags = req.body.tags.slice();
+  }
+  if(req.body.username) {
+    locationData.username = req.body.username;
   }
   googleMapsClient.geocode({
     address: req.body.name
@@ -24,7 +28,8 @@ locationController.addLocation = (req, res, next) => {
     let createLocation = new Location({
       name: locationData.name,
       googleInfo: locationData.googleInfo,
-      tags: locationData.tags
+      tags: locationData.tags,
+      username: locationData.username
     });
     createLocation.save((dbErr) => {
       if(dbErr) {

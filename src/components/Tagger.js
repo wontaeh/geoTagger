@@ -9,7 +9,8 @@ class Tagger extends Component {
         super(props);
         this.state = {
             datas : [],
-						displayDatas : []
+						displayDatas : [],
+						username: this.props.location.state.referrer.username
         };
 		}
 		
@@ -32,11 +33,12 @@ class Tagger extends Component {
 		}
 
     handleClickSave = (data) => {
-        const { datas } = this.state; 
+        const { datas, username } = this.state; 
         let addData = {
             name: data.name,
 						tags: data.tags,
-						googleInfo: []
+						googleInfo: [],
+						username: username
         };
 				console.log('before fetch - add data: ', addData);
 				let that = this;
@@ -64,15 +66,17 @@ class Tagger extends Component {
 		}
 
 		componentWillMount = () => {
+			console.log('state username: ', this.state.username);
 			let that = this;
-			const { datas } = this.state; 
+			const { datas, username } = this.state; 
 			fetch('/getResults')
 			.then(function(res) {
 				return res.json();
 			})
 			.then(function(response) {
+				console.log('In componentWillMount response: ', response);
 				that.setState({
-					datas : datas.concat(response)
+					datas : datas.concat(response.filter((item) => item.username === username )),
 				});
 			});
 		}
