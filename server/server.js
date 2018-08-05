@@ -35,7 +35,9 @@ app.get('/', function (req, res) {
 app.post('/signup', userController.createUser);
 app.post('/login', 	userController.verifyUser);
 
-app.get('/getResults', locationController.getLocations);
+// app.get('/getResults', locationController.getLocations);
+app.post('/getResults', locationController.getLocations);
+
 app.post('/addLocation', locationController.addLocation);
 
 

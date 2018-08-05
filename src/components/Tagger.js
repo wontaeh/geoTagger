@@ -65,18 +65,40 @@ class Tagger extends Component {
 					});
 		}
 
+		// componentWillMount = () => {
+		// 	console.log('state username: ', this.state.username);
+		// 	let that = this;
+		// 	const { datas, username } = this.state; 
+		// 	fetch('/getResults')
+		// 	.then(function(res) {
+		// 		return res.json();
+		// 	})
+		// 	.then(function(response) {
+		// 		console.log('In componentWillMount response: ', response);
+		// 		that.setState({
+		// 			datas : datas.concat(response.filter((item) => item.username === username )),
+		// 		});
+		// 	});
+		// }
+
 		componentWillMount = () => {
-			console.log('state username: ', this.state.username);
 			let that = this;
-			const { datas, username } = this.state; 
-			fetch('/getResults')
-			.then(function(res) {
+			const { datas, username } = this.state;
+			let userData = {
+				username
+			}
+			fetch('/getResults', {
+				method: 'POST', 
+        body: JSON.stringify(userData), //
+        headers:{
+          'Content-Type': 'application/json'
+        }
+			}).then(function(res) {
 				return res.json();
 			})
 			.then(function(response) {
-				console.log('In componentWillMount response: ', response);
 				that.setState({
-					datas : datas.concat(response.filter((item) => item.username === username )),
+					datas : datas.concat(response)
 				});
 			});
 		}

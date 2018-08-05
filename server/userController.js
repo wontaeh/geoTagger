@@ -31,7 +31,7 @@ userController.verifyUser = (req, res, next) => {
 			// res.send({error: 'user does not exist, please create an account'});
 			res.send(err);
 		} else {
-			console.log('req.body.password: ',req.body.password, ", userInfo.password: ",userInfo.password)
+			console.log('req.body in verify User: ',req.body, ", userInfo: ",userInfo)
 			bcrypt.compare(req.body.password, userInfo.password, (err, result)=> {
 				if(result) {
 					res.locals.userInfo = userInfo;

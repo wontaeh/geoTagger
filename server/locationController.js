@@ -8,7 +8,7 @@ var googleMapsClient = require('@google/maps').createClient({
 
 const locationController = {};
 locationController.addLocation = (req, res, next) => {
-  console.log('req.body: ', req.body);
+  console.log('req.body in addlcation: ', req.body);
   let locationData = {};
   if(req.body.name) {
     locationData.name = req.body.name;
@@ -43,9 +43,22 @@ locationController.addLocation = (req, res, next) => {
   });
 };
 
+// locationController.getLocations = (req, res, next) => {
+//   let locations = [];
+//   Location.find({}, (err, locations) => {
+//     if(!err) {
+//       console.log('locations: ',locations);
+//       res.send(locations);
+//     } else {
+//       res.send([]);
+//     }
+//   });
+// };
+
 locationController.getLocations = (req, res, next) => {
   let locations = [];
-  Location.find({}, (err, locations) => {
+  console.log('req.body in getLocations: ', req.body.username);
+  Location.find({username: req.body.username}, (err, locations) => {
     if(!err) {
       console.log('locations: ',locations);
       res.send(locations);
